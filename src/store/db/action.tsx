@@ -9,14 +9,14 @@ import {
 
 import API from '../../api';
 
-export interface DB_ACTION extends Action {
+export interface DB_ACTION<T> extends Action {
   type: DB_ACTION_TYPE;
-  payload?: {};
+  payload?: T;
 }
 
 const api = API.getInstance();
 
-const getLadningPageProducts = (products: Product[]): DB_ACTION => {
+const getLadningPageProducts = (products: Product[]): DB_ACTION<Product[]> => {
   return {
     type: DB_ACTION_TYPE.GET_LANDING_PAGE_PRODUCTS,
     payload: products,

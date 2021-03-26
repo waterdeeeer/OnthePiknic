@@ -1,29 +1,19 @@
 import React, { useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { DBState, RootState } from '../../types';
 
 import Layout from '../style/Layout';
 import Image from '../style/Image';
 import COLORS from '../utils/colors';
 import Filter from '../style/Filter';
-import { getLandingPageProductsAsync } from '../../store/db/action';
 
 const Main: React.FC = () => {
   const mainImage = useRef(HTMLDivElement.prototype);
-
-  const dispatch = useDispatch();
-  const db: DBState = useSelector((state: RootState) => state.db);
-  console.log('rendered');
 
   return (
     <Layout backgroundColor={COLORS.BLUE} flexDirection="column">
       <Filter zIndex={1} />
       <Image
+        position="relative"
         zIndex={100}
-        onClick={() => {
-          dispatch(getLandingPageProductsAsync());
-        }}
         ref={mainImage}
         backgroundImage="url(https://assets.potatojoayo.com/landing_page/onthepiknic.png)"
         height={450}
@@ -47,7 +37,6 @@ const Main: React.FC = () => {
         }}
         zIndex={2}
       />
-      <div>{db[0] ? db[0].name : 'LOADING...'}</div>
       {/* <Image
         position="absolute"
         right={50}

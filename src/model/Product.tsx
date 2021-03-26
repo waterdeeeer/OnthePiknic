@@ -4,7 +4,7 @@ import Cooperation, { CooperationModel } from './Cooperation';
 
 export interface ProductModel {
   name: string;
-  id: number;
+  _id: number;
   price: number;
   color: string[];
   description: string;
@@ -28,7 +28,7 @@ class Product {
   cooperation: Cooperation;
   constructor(jsonData: ProductModel) {
     this.name = jsonData.name;
-    this.id = jsonData.id;
+    this.id = jsonData._id;
     this.price = jsonData.price;
     this.color = jsonData.color;
     this.description = jsonData.description;

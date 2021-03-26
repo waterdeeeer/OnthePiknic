@@ -3,6 +3,11 @@ body {
   padding: 0;
 }
 
+html {
+  height: 100%;
+  width: 100%;
+}
+
 @font-face {
   font-family: 'Lovecraft';
   src: local('Lovecraft'),
