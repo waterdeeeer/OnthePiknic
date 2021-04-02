@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { moveIndex } from "../../store/listview/action";
@@ -17,7 +17,7 @@ export interface ListItemProps {
   idx: number;
 }
 function mod(n: number, m: number) {
-  return (n % m) + n;
+  return ((n % m) + m) % m;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
@@ -26,18 +26,27 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
   const listviewState: ListviewState = useSelector(
     (state: RootState) => state.listview
   );
-  const [translateValue, setTranslateValue] = useState(0);
+  const [translateXValue, setTranslateXValue] = useState(0);
+  const [opacity, setOpacity] = useState(1);
   useEffect(() => {
     const unitWidth = windowSize.width / 2;
-    const idxFirst =
-      (listviewState.currentIndex -
+    const order = mod(
+      idx -
+        listviewState.currentIndex +
         Math.round(listviewState.itemList.length / 2) -
-        1) %
-      listviewState.itemList.length;
-    const order = (idx - idxFirst) % 5;
-    setTranslateValue(order * unitWidth);
-  }, [listviewState]);
-
+        1,
+      5
+    );
+    let op = 1;
+    if (order == 0 || order == listviewState.itemList.length - 1) op = 0;
+    setOpacity(op);
+    setTranslateXValue(order * unitWidth);
+  }, [
+    listviewState.currentIndex,
+    windowSize.width,
+    idx,
+    listviewState.itemList.length,
+  ]);
   if (!product) {
     return <div>LOADING...</div>;
   } else {
@@ -46,16 +55,17 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
       <Container
         width={500}
         height={500}
-        display="inline-block"
         position="absolute"
+        display="inline-block"
         left={idx * 500}
         zIndex={2}
         onClick={(e) => {
           e.preventDefault();
           dispatch(moveIndex(idx));
-          console.log(idx);
         }}
+        transform={`translateX(${translateXValue}px)`}
         cursor="pointer"
+        opacity={opacity}
       >
         <Image
           backgroundImage={`url(${IMAGE_BASE_URL + repClothImage[0].src})`}
