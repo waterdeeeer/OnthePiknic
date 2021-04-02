@@ -38,7 +38,7 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
       5
     );
     let op = 1;
-    if (order == 0 || order == listviewState.itemList.length - 1) op = 0;
+    if (order === 0 || order === listviewState.itemList.length - 1) op = 0;
     setOpacity(op);
     setTranslateXValue(order * unitWidth);
   }, [
