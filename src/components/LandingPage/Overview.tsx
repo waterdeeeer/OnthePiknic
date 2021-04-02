@@ -10,21 +10,35 @@ import ListItem from './ListItem';
 import ListView from '../style/ListVIew';
 
 import { getLandingPageProductsAsync } from '../../store/db/action';
+import useWindowSize from '../../hooks/useWindowSize';
+import { ListviewState } from '../../store/listview/reducer';
+import { addList } from '../../store/listview/action';
 
 const Overview: React.FC = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getLandingPageProductsAsync());
-  }, [dispatch]);
   const db: DBState = useSelector((state: RootState) => state.db);
-  const itemList: JSX.Element[] = db.product.map((item) => {
-    return <ListItem product={item} key={item.id} />;
-  });
+  const listviewState: ListviewState = useSelector(
+    (state: RootState) => state.listview
+  );
+  useEffect(() => {
+    if (db.product.length === 0) dispatch(getLandingPageProductsAsync());
+    if (listviewState.itemList.length === 0 && db.product.length > 0) {
+      const itemList: JSX.Element[] = db.product.map((item, idx) => {
+        return <ListItem product={item} key={item.id} idx={idx} />;
+      });
+      dispatch(addList(itemList));
+    }
+  }, [dispatch, db.product]);
   return (
     <Layout backgroundColor={COLORS.BLUE}>
       <Filter zIndex={1} />
-      <ListView width="100vw" height="500px">
-        {itemList}
+      <ListView
+        width="100vw"
+        height="500px"
+        transition="transform cubic-bezier(.5,.7,.1,1.2) 0.5s"
+        zIndex={2}
+      >
+        {listviewState.itemList}
       </ListView>
     </Layout>
   );

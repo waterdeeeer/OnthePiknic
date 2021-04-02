@@ -6,6 +6,9 @@ interface ContainerProps {
   zIndex?: number;
   margin?: number | string;
   display?: string;
+  cursor?: string;
+  transform?: string;
+  position?: 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
 }
 
 const Container = styled.div(
@@ -18,6 +21,9 @@ const Container = styled.div(
     zIndex: props.zIndex,
     margin: props.margin,
     display: props.display,
+    cursor: props.cursor,
+    transform: props.transform,
+    position: props.position,
   })
 );
 

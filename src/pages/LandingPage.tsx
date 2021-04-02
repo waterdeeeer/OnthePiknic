@@ -2,7 +2,6 @@ import React from 'react';
 
 import Main from '../components/LandingPage/Main';
 import Overview from '../components/LandingPage/Overview';
-
 const LandingPage: React.FC = () => {
   return (
     <div>
@@ -11,5 +10,4 @@ const LandingPage: React.FC = () => {
     </div>
   );
 };
-
 export default LandingPage;

@@ -19,6 +19,10 @@ interface ImageProps {
   backgroundSize?: string;
   backgroundPosition?: string;
   backgroundRepeat?: string;
+  display?: string;
+  transition?: string;
+  opacity?: number;
+  maxHeight?: number;
 }
 
 const Image = styled.div(
@@ -42,6 +46,10 @@ const Image = styled.div(
     right: props.right,
     cursor: props.cursor,
     zIndex: props.zIndex,
+    display: props.display,
+    transition: props.transition,
+    opacity: props.opacity,
+    maxHeight: props.maxHeight,
     [mediaquery[DISPLAY_SIZE.MOBILE]]: props.mobile,
     [mediaquery[DISPLAY_SIZE.TABLET]]: props.tablet,
     [mediaquery[DISPLAY_SIZE.DESKTOP]]: props.desktop,

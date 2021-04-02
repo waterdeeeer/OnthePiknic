@@ -5,11 +5,12 @@ interface ListViewProp {
   height: string;
   transform?: string;
   position?: 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
+  zIndex?: number;
+  transition?: string;
 }
 
 const ListView = styled.div(
   {
-    overflow: 'scroll',
     display: 'flex',
   },
   (props: ListViewProp) => ({
@@ -17,6 +18,8 @@ const ListView = styled.div(
     width: props.width,
     transform: props.transform,
     position: props.position,
+    zIndex: props.zIndex,
+    transition: props.transition,
   })
 );
 

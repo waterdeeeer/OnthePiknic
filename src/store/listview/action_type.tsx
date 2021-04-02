@@ -1,0 +1,6 @@
+enum LISTVIEW_ACTION_TYPE {
+  MOVE_INDEX = 'MOVE_INDEX',
+  ADD_LIST = 'ADD_LIST',
+}
+
+export default LISTVIEW_ACTION_TYPE;

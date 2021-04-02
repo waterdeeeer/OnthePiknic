@@ -23,7 +23,9 @@ import { ProductImageModel } from '../model/ProductImage';
 */
 
 import DB_ACTION_TYPE from '../store/db/action_type';
+import LISTVIEW_ACTION_TYPE from '../store/listview/action_type';
 import { DB_ACTION } from '../store/db/action';
+import { LISTVIEW_ACTION } from '../store/listview/action';
 import { DBState } from '../store/db/reducer';
 import { AsyncThunkAction, RootState } from '../store';
 
@@ -41,6 +43,14 @@ export type {
   DBState,
   RootState,
   AsyncThunkAction,
+  LISTVIEW_ACTION,
 };
 
-export { Product, ProductImage, Brand, Cooperation, DB_ACTION_TYPE };
+export {
+  Product,
+  ProductImage,
+  Brand,
+  Cooperation,
+  DB_ACTION_TYPE,
+  LISTVIEW_ACTION_TYPE,
+};
