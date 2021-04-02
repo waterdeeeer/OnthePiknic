@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { moveIndex } from '../../store/listview/action';
@@ -10,12 +10,14 @@ import useWindowSize from '../../hooks/useWindowSize';
 import Image from '../style/Image';
 import { IMAGE_BASE_URL } from '../../api';
 import Container from '../style/Container';
-import Box from '../style/Box';
 import { ListviewState } from '../../store/listview/reducer';
 
 export interface ListItemProps {
   product: Product;
   idx: number;
+}
+function mod(n: number, m: number) {
+  return ((n % m) + m) % m;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
@@ -24,16 +26,27 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
   const listviewState: ListviewState = useSelector(
     (state: RootState) => state.listview
   );
-  const translateXValue = (): number => {
+  const [translateXValue, setTranslateXValue] = useState(0);
+  const [opacity, setOpacity] = useState(1);
+  useEffect(() => {
     const unitWidth = windowSize.width / 2;
-    const idxFirst =
-      (listviewState.currentIndex -
+    const order = mod(
+      idx -
+        listviewState.currentIndex +
         Math.round(listviewState.itemList.length / 2) -
-        1) %
-      listviewState.itemList.length;
-    const order = (idx - idxFirst) % 5;
-    return order * unitWidth;
-  };
+        1,
+      5
+    );
+    let op = 1;
+    if (order == 0 || order == listviewState.itemList.length - 1) op = 0;
+    setOpacity(op);
+    setTranslateXValue(order * unitWidth);
+  }, [
+    listviewState.currentIndex,
+    windowSize.width,
+    idx,
+    listviewState.itemList.length,
+  ]);
   if (!product) {
     return <div>LOADING...</div>;
   } else {
@@ -42,14 +55,17 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
       <Container
         width={500}
         height={500}
+        position="absolute"
         display="inline-block"
         zIndex={2}
         onClick={(e) => {
           e.preventDefault();
           dispatch(moveIndex(idx));
-          console.log(idx);
         }}
+        transform={`translateX(${translateXValue}px)`}
+        transition="transform ease-in .5s, opacity ease-in .3s"
         cursor="pointer"
+        opacity={opacity}
       >
         <Image
           backgroundImage={`url(${IMAGE_BASE_URL + repClothImage[0].src})`}

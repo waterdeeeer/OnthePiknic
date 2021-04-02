@@ -10,12 +10,13 @@ import ListItem from './ListItem';
 import ListView from '../style/ListVIew';
 
 import { getLandingPageProductsAsync } from '../../store/db/action';
-import useWindowSize from '../../hooks/useWindowSize';
 import { ListviewState } from '../../store/listview/reducer';
 import { addList } from '../../store/listview/action';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const Overview: React.FC = () => {
   const dispatch = useDispatch();
+  const windowSize = useWindowSize();
   const db: DBState = useSelector((state: RootState) => state.db);
   const listviewState: ListviewState = useSelector(
     (state: RootState) => state.listview
@@ -26,16 +27,19 @@ const Overview: React.FC = () => {
       const itemList: JSX.Element[] = db.product.map((item, idx) => {
         return <ListItem product={item} key={item.id} idx={idx} />;
       });
+      itemList.push(itemList[2]);
       dispatch(addList(itemList));
     }
-  }, [dispatch, db.product]);
+  }, [dispatch, db.product, listviewState.itemList.length]);
+  const midLength = Math.round(listviewState.itemList.length / 2) - 1;
   return (
-    <Layout backgroundColor={COLORS.BLUE}>
+    <Layout backgroundColor={COLORS.BLUE} overflow="hidden">
       <Filter zIndex={1} />
       <ListView
-        width="100vw"
+        width="100%"
+        position="relative"
+        left={-(midLength - 1 / 2) * 500 - windowSize.width / 2 + 500}
         height="500px"
-        transition="transform cubic-bezier(.5,.7,.1,1.2) 0.5s"
         zIndex={2}
       >
         {listviewState.itemList}

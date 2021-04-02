@@ -9,6 +9,8 @@ interface ContainerProps {
   cursor?: string;
   transform?: string;
   position?: 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
+  transition?: string;
+  opacity?: number;
 }
 
 const Container = styled.div(
@@ -24,6 +26,8 @@ const Container = styled.div(
     cursor: props.cursor,
     transform: props.transform,
     position: props.position,
+    transition: props.transition,
+    opacity: props.opacity,
   })
 );
 

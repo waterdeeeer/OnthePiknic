@@ -5,6 +5,7 @@ interface LayoutProps {
   justifyContent?: string;
   alignItems?: string;
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  overflow?: string;
 }
 
 const Layout = styled.div(
@@ -12,7 +13,6 @@ const Layout = styled.div(
     width: '100%',
     height: '100vh',
     display: 'flex',
-    overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -21,6 +21,7 @@ const Layout = styled.div(
     justifyContent: props.justifyContent,
     alignItems: props.alignItems,
     flexDirection: props.flexDirection,
+    overflow: props.overflow,
   })
 );
 

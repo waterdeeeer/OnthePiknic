@@ -7,6 +7,8 @@ interface ListViewProp {
   position?: 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
   zIndex?: number;
   transition?: string;
+  overflow?: string;
+  left?: number;
 }
 
 const ListView = styled.div(
@@ -20,6 +22,8 @@ const ListView = styled.div(
     position: props.position,
     zIndex: props.zIndex,
     transition: props.transition,
+    overflow: props.overflow,
+    left: props.left,
   })
 );
 
