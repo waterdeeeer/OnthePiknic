@@ -27,7 +27,6 @@ const Overview: React.FC = () => {
       const itemList: JSX.Element[] = db.product.map((item, idx) => {
         return <ListItem product={item} key={item.id} idx={idx} />;
       });
-      itemList.push(itemList[2]);
       dispatch(addList(itemList));
     }
   }, [dispatch, db.product, listviewState.itemList.length]);
