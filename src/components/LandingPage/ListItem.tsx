@@ -1,21 +1,23 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { moveIndex } from '../../store/listview/action';
+import { moveIndex } from "../../store/listview/action";
 
-import { Product, RootState } from '../../types';
+import { Product, RootState } from "../../types";
 
-import useWindowSize from '../../hooks/useWindowSize';
+import useWindowSize from "../../hooks/useWindowSize";
 
-import Image from '../style/Image';
-import { IMAGE_BASE_URL } from '../../api';
-import Container from '../style/Container';
-import Box from '../style/Box';
-import { ListviewState } from '../../store/listview/reducer';
+import Image from "../style/Image";
+import { IMAGE_BASE_URL } from "../../api";
+import Container from "../style/Container";
+import { ListviewState } from "../../store/listview/reducer";
 
 export interface ListItemProps {
   product: Product;
   idx: number;
+}
+function mod(n: number, m: number) {
+  return (n % m) + n;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
@@ -24,7 +26,8 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
   const listviewState: ListviewState = useSelector(
     (state: RootState) => state.listview
   );
-  const translateXValue = (): number => {
+  const [translateValue, setTranslateValue] = useState(0);
+  useEffect(() => {
     const unitWidth = windowSize.width / 2;
     const idxFirst =
       (listviewState.currentIndex -
@@ -32,8 +35,9 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
         1) %
       listviewState.itemList.length;
     const order = (idx - idxFirst) % 5;
-    return order * unitWidth;
-  };
+    setTranslateValue(order * unitWidth);
+  }, [listviewState]);
+
   if (!product) {
     return <div>LOADING...</div>;
   } else {
@@ -43,6 +47,8 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
         width={500}
         height={500}
         display="inline-block"
+        position="absolute"
+        left={idx * 500}
         zIndex={2}
         onClick={(e) => {
           e.preventDefault();

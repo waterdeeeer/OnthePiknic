@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 interface ContainerProps {
   width: number;
@@ -8,7 +8,8 @@ interface ContainerProps {
   display?: string;
   cursor?: string;
   transform?: string;
-  position?: 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
+  position?: "static" | "relative" | "absolute" | "sticky" | "fixed";
+  left?: number;
 }
 
 const Container = styled.div(
@@ -24,6 +25,7 @@ const Container = styled.div(
     cursor: props.cursor,
     transform: props.transform,
     position: props.position,
+    left: props.left,
   })
 );
 

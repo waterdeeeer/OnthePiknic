@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { DBState, RootState } from '../../types';
+import { DBState, RootState } from "../../types";
 
-import Layout from '../style/Layout';
-import COLORS from '../utils/colors';
-import Filter from '../style/Filter';
-import ListItem from './ListItem';
-import ListView from '../style/ListVIew';
+import Layout from "../style/Layout";
+import COLORS from "../utils/colors";
+import Filter from "../style/Filter";
+import ListItem from "./ListItem";
+import ListView from "../style/ListVIew";
 
-import { getLandingPageProductsAsync } from '../../store/db/action';
-import useWindowSize from '../../hooks/useWindowSize';
-import { ListviewState } from '../../store/listview/reducer';
-import { addList } from '../../store/listview/action';
+import { getLandingPageProductsAsync } from "../../store/db/action";
+import { ListviewState } from "../../store/listview/reducer";
+import { addList } from "../../store/listview/action";
 
 const Overview: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,6 +36,7 @@ const Overview: React.FC = () => {
         height="500px"
         transition="transform cubic-bezier(.5,.7,.1,1.2) 0.5s"
         zIndex={2}
+        position="relative"
       >
         {listviewState.itemList}
       </ListView>
