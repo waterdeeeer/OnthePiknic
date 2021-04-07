@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 interface TextProps {
   fontSize: number;
@@ -6,21 +6,23 @@ interface TextProps {
   color?: string;
   letterSpacing?: number;
   textAlign?:
-    | 'start'
-    | 'end'
-    | 'left'
-    | 'right'
-    | 'center'
-    | 'justify'
-    | 'match-parent';
+    | "start"
+    | "end"
+    | "left"
+    | "right"
+    | "center"
+    | "justify"
+    | "match-parent";
   width?: number;
+  display?: string;
+  margin?: number | string;
 }
 
 const Text = styled.p(
   {
-    userSelect: 'none',
+    userSelect: "none",
     margin: 0,
-    mixBlendMode: 'initial',
+    mixBlendMode: "initial",
   },
   (props: TextProps) => ({
     fontFamily: props.fontFamily,
@@ -29,6 +31,8 @@ const Text = styled.p(
     textAlign: props.textAlign,
     letterSpacing: props.letterSpacing,
     width: props.width,
+    display: props.display,
+    margin: props.margin,
   })
 );
 

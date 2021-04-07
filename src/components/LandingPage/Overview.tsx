@@ -13,6 +13,7 @@ import { getLandingPageProductsAsync } from "../../store/db/action";
 import { ListviewState } from "../../store/listview/reducer";
 import { addList } from "../../store/listview/action";
 import useWindowSize from "../../hooks/useWindowSize";
+import Footer from "../Footer";
 
 const Overview: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,18 +33,26 @@ const Overview: React.FC = () => {
   }, [dispatch, db.product, listviewState.itemList.length]);
   const midLength = Math.round(listviewState.itemList.length / 2) - 1;
   return (
-    <Layout backgroundColor={COLORS.BLUE} overflow="hidden">
-      <Filter zIndex={1} />
-      <ListView
-        width="100%"
+    <>
+      <Layout
+        backgroundColor={COLORS.BLUE}
+        overflow="hidden"
         position="relative"
-        left={-(midLength - 1 / 2) * 500 - windowSize.width / 2 + 500}
-        height="500px"
-        zIndex={2}
+        padding="0 0 200px 0"
       >
-        {listviewState.itemList}
-      </ListView>
-    </Layout>
+        <Filter zIndex={1} padding="0 0 200px 0 " />
+        <ListView
+          width="100%"
+          position="relative"
+          left={-(midLength - 1 / 2) * 500 - windowSize.width / 2 + 500}
+          height="500px"
+          zIndex={2}
+        >
+          {listviewState.itemList}
+        </ListView>
+        <Footer color={COLORS.YELLOW}></Footer>
+      </Layout>
+    </>
   );
 };
 

@@ -1,10 +1,10 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
-import mediaquery, { DISPLAY_SIZE } from '../utils/media_query';
+import mediaquery, { DISPLAY_SIZE } from "../utils/media_query";
 interface ImageProps {
   backgroundImage?: string;
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
   position?: any;
   top?: number;
   left?: number;
@@ -23,14 +23,16 @@ interface ImageProps {
   transition?: string;
   opacity?: number;
   maxHeight?: number;
+  padding?: number | string;
+  margin?: number | string;
 }
 
 const Image = styled.div(
   {
     margin: 0,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   },
   (props: ImageProps) => ({
     backgroundSize: props.backgroundSize,
@@ -53,6 +55,8 @@ const Image = styled.div(
     [mediaquery[DISPLAY_SIZE.MOBILE]]: props.mobile,
     [mediaquery[DISPLAY_SIZE.TABLET]]: props.tablet,
     [mediaquery[DISPLAY_SIZE.DESKTOP]]: props.desktop,
+    padding: props.padding,
+    margin: props.margin,
   })
 );
 export default Image;

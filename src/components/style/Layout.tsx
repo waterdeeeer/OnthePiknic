@@ -6,6 +6,9 @@ interface LayoutProps {
   alignItems?: string;
   flexDirection?: "row" | "row-reverse" | "column" | "column-reverse";
   overflow?: string;
+  position?: "absolute" | "relative";
+  height?: number;
+  padding?: number | string;
 }
 
 const Layout = styled.div(
@@ -22,6 +25,9 @@ const Layout = styled.div(
     alignItems: props.alignItems,
     flexDirection: props.flexDirection,
     overflow: props.overflow,
+    position: props.position,
+    height: props.height,
+    padding: props.padding,
   })
 );
 

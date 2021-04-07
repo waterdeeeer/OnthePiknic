@@ -14,7 +14,6 @@ interface ListViewProp {
 const ListView = styled.div(
   {
     display: "flex",
-    overflow: "hidden",
   },
   (props: ListViewProp) => ({
     height: props.height,

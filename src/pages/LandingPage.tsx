@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Main from '../components/LandingPage/Main';
-import Overview from '../components/LandingPage/Overview';
+import Main from "../components/LandingPage/Main";
+import Overview from "../components/LandingPage/Overview";
 const LandingPage: React.FC = () => {
   return (
     <div>
