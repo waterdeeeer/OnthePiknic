@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { moveIndex } from '../../store/listview/action';
+import { LISTITEM_SIZE } from '../utils/size';
 
 import { Product, RootState } from '../../types';
 
@@ -38,7 +39,7 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
       5
     );
     let op = 1;
-    if (order == 0 || order == listviewState.itemList.length - 1) op = 0;
+    if (order === 0 || order === listviewState.itemList.length - 1) op = 0;
     setOpacity(op);
     setTranslateXValue(order * unitWidth);
   }, [
@@ -53,49 +54,76 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
     const repClothImage = product.images.filter((image) => image.is_rep);
     return (
       <Container
-        width={500}
-        height={500}
+        width={LISTITEM_SIZE.ITEMWIDTH}
+        height={LISTITEM_SIZE.ITEMHEIGHT}
         position="absolute"
         display="inline-block"
         zIndex={2}
+        borderRadius={20}
         onClick={(e) => {
           e.preventDefault();
           dispatch(moveIndex(idx));
         }}
         transform={`translateX(${translateXValue}px)`}
-        transition="transform ease-in .5s, opacity ease-in .3s"
+        transition="transform cubic-bezier(.5,.7,.1,1.2) .5s, opacity ease-in .3s"
         cursor="pointer"
         opacity={opacity}
+        backgroundColor={idx === listviewState.currentIndex ? '#ffffff99' : ''}
+        before={{
+          content: '""',
+          position: 'absolute',
+          width: LISTITEM_SIZE.ITEMWIDTH,
+          height: LISTITEM_SIZE.ITEMHEIGHT,
+          left: 0,
+          top: 0,
+          backgroundImage: `url(${IMAGE_BASE_URL + '/filter.png'})`,
+          zIdnex: -1,
+        }}
+        boxShadow={
+          idx === listviewState.currentIndex
+            ? '7px 15px 5px rgba(0,0,0,0.3)'
+            : ''
+        }
+        active={
+          idx === listviewState.currentIndex
+            ? {
+                transform: `translateX(${translateXValue}px) scale(.96)`,
+              }
+            : {}
+        }
       >
         <Image
           backgroundImage={`url(${IMAGE_BASE_URL + repClothImage[0].src})`}
-          width={500}
-          height={500}
+          width={LISTITEM_SIZE.CLOTHIMAGEWIDTH}
+          height={LISTITEM_SIZE.CLOTHIMAGEHEIGHT}
           backgroundSize="contain"
+          zIndex={10}
         ></Image>
         <Image
           backgroundImage={`url(${IMAGE_BASE_URL + product.brand.logo_src})`}
-          width={400}
-          height={200}
+          width={LISTITEM_SIZE.BRANDLOGOWIDTH}
+          height={LISTITEM_SIZE.BRANDLOGOHEIGHT}
           position="relative"
           backgroundSize="contain"
-          top={-200}
-          left={90}
+          top={-150}
+          left={50}
           transition="opacity ease-in .3s"
           opacity={idx === listviewState.currentIndex ? 1 : 0}
+          zIndex={0}
         ></Image>
         <Image
           backgroundImage={`url(${
             IMAGE_BASE_URL + product.cooperation.logo_src
           })`}
-          width={300}
-          height={200}
+          width={LISTITEM_SIZE.COOPERLOGOWIDTH}
+          height={LISTITEM_SIZE.COOPERLOGOHEIGHT}
           backgroundSize="contain"
           position="relative"
           top={-750}
-          left={-50}
+          left={10}
           transition="opacity ease-in .3s"
           opacity={idx === listviewState.currentIndex ? 1 : 0}
+          zIndex={-1}
         ></Image>
       </Container>
     );

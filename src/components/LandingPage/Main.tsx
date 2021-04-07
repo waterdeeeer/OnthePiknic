@@ -4,6 +4,7 @@ import Layout from '../style/Layout';
 import Image from '../style/Image';
 import COLORS from '../utils/colors';
 import Filter from '../style/Filter';
+import { IMAGE_BASE_URL } from '../../api';
 
 const Main: React.FC = () => {
   const mainImage = useRef(HTMLDivElement.prototype);
@@ -15,12 +16,14 @@ const Main: React.FC = () => {
         position="relative"
         zIndex={100}
         ref={mainImage}
-        backgroundImage="url(https://assets.potatojoayo.com/landing_page/onthepiknic.png)"
+        backgroundImage={`url(${
+          IMAGE_BASE_URL + '/landing_page/onthepiknic.png)'
+        }`}
         height={450}
         width={450}
       />
       <Image
-        backgroundImage="url(https://assets.potatojoayo.com/logo.png)"
+        backgroundImage={`url(${IMAGE_BASE_URL + '/logo.png)'}`}
         height={85}
         width={85}
         position="absolute"

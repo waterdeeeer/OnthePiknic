@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import mediaquery, { DISPLAY_SIZE } from '../utils/media_query';
 interface ImageProps {
   backgroundImage?: string;
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
   position?: any;
   top?: number;
   left?: number;
@@ -23,6 +23,7 @@ interface ImageProps {
   transition?: string;
   opacity?: number;
   maxHeight?: number;
+  transform?: string;
 }
 
 const Image = styled.div(
@@ -53,6 +54,7 @@ const Image = styled.div(
     [mediaquery[DISPLAY_SIZE.MOBILE]]: props.mobile,
     [mediaquery[DISPLAY_SIZE.TABLET]]: props.tablet,
     [mediaquery[DISPLAY_SIZE.DESKTOP]]: props.desktop,
+    transform: props.transform,
   })
 );
 export default Image;

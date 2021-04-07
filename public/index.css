@@ -9,7 +9,10 @@ html {
 }
 
 @font-face {
-  font-family: 'Lovecraft';
-  src: local('Lovecraft'),
-    url(../src/components/utils/fonts/Love\ Craft.ttf) format('ttf');
+  font-family: 'LoveCraft';
+  src: url(fonts/LoveCraft.ttf);
+}
+@font-face {
+  font-family: 'Meslo';
+  src: url(fonts/Meslo.ttf);
 }

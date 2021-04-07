@@ -5,6 +5,7 @@ interface TextProps {
   fontFamily?: string;
   color?: string;
   letterSpacing?: number;
+  display?: string;
   textAlign?:
     | 'start'
     | 'end'
@@ -14,6 +15,12 @@ interface TextProps {
     | 'justify'
     | 'match-parent';
   width?: number;
+  transform?: string;
+  flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  justifyContent?: string;
+  alignItems?: string;
+  margin?: string;
+  lineHeight?: number;
 }
 
 const Text = styled.p(
@@ -29,6 +36,13 @@ const Text = styled.p(
     textAlign: props.textAlign,
     letterSpacing: props.letterSpacing,
     width: props.width,
+    transform: props.transform,
+    flexDirection: props.flexDirection,
+    display: props.display,
+    lineHeight: props.lineHeight,
+    justifyContent: props.justifyContent,
+    alignItems: props.alignItems,
+    margin: props.margin,
   })
 );
 

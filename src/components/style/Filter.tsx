@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 interface FilterProps {
   zIndex?: number;
+  padding?: string;
 }
 
 const Filter = styled.div(
@@ -13,6 +14,7 @@ const Filter = styled.div(
   },
   (props: FilterProps) => ({
     zIndex: props.zIndex,
+    padding: props.padding,
   })
 );
 

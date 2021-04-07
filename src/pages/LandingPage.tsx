@@ -2,12 +2,13 @@ import React from 'react';
 
 import Main from '../components/LandingPage/Main';
 import Overview from '../components/LandingPage/Overview';
+import Container from '../components/style/Container';
 const LandingPage: React.FC = () => {
   return (
-    <div>
+    <Container>
       <Main></Main>
       <Overview></Overview>
-    </div>
+    </Container>
   );
 };
 export default LandingPage;
