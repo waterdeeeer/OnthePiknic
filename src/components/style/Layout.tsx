@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 interface LayoutProps {
-  backgroundColor: string;
+  backgroundColor?: string;
   justifyContent?: string;
   alignItems?: string;
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';

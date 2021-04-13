@@ -1,0 +1,3 @@
+export enum NAVBAR_ACTION_TYPE {
+	OPEN_MENU = 'OPEN_MENU'
+}

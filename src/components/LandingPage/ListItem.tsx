@@ -69,16 +69,6 @@ const ListItem: React.FC<ListItemProps> = ({ product, idx }) => {
         cursor="pointer"
         opacity={opacity}
         backgroundColor={idx === listviewState.currentIndex ? '#ffffff99' : ''}
-        before={{
-          content: '""',
-          position: 'absolute',
-          width: LISTITEM_SIZE.ITEMWIDTH,
-          height: LISTITEM_SIZE.ITEMHEIGHT,
-          left: 0,
-          top: 0,
-          backgroundImage: `url(${IMAGE_BASE_URL + '/filter.png'})`,
-          zIdnex: -1,
-        }}
         boxShadow={
           idx === listviewState.currentIndex
             ? '7px 15px 5px rgba(0,0,0,0.3)'

@@ -11,6 +11,8 @@ const Filter = styled.div(
     width: '100%',
     height: '100%',
     position: 'absolute',
+    left: 0,
+    top: 0,
   },
   (props: FilterProps) => ({
     zIndex: props.zIndex,
