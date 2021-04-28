@@ -7,7 +7,6 @@ import Text from '../style/Text';
 import COLORS from '../utils/colors'
 import NavBar from './NavBar'
 
-
 const Header: React.FC = () => {
 	return (
 		<Container

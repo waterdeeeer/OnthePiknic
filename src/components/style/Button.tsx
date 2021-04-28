@@ -18,6 +18,7 @@ interface ButtonProps {
 	position?: CSSObject['position'];
 	fontSize?: CSSObject['fontSize'];
 	margin?: CSSObject['margin'];
+	maxWidth?: CSSObject['maxWidth'];
 }
 
 const Button = styled.div(
@@ -48,7 +49,8 @@ const Button = styled.div(
 		minWidth: props.minWidth,
 		position: props.position,
 		fontSize: props.fontSize,
-		margin: props.margin
+		margin: props.margin,
+		maxWidth: props.maxWidth
 	})
 );
 

@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "otp",
+            "script": "npm",
+			"cwd": "./src",
+            "args" : "start"
+        }
+    ]
+}

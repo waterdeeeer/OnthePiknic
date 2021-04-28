@@ -23,7 +23,7 @@ const navbarReducer =
 	(state: NavbarState = initialState, action: NavbarAction): NavbarState => {
 		switch (action.type) {
 			case NAVBAR_ACTION_TYPE.OPEN_MENU:
-				if (state.isOpen[action.payload!]) {
+				if (state.isOpen[action.payload!] || action.payload! === -1) {
 					return {
 						...state,
 						isOpen: [...state.isOpen].fill(false)

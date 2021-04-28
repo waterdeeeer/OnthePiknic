@@ -6,21 +6,22 @@ import COLORS from '../utils/colors'
 import DropdownItem from './DropdownItem'
 import {RootState} from '../../store';
 import {openMenu} from '../../store/navbar/action'
+import {ParentCategoryType} from '../../model/ParentCategory';
 
 interface NavBarItemProps {
-	category_name: string;
-	sub_categories?: string[];
+	parentCategory: ParentCategoryType;
 	index: number;
 }
 
 const NavBarItem: React.FC<NavBarItemProps>
-	= ({category_name, sub_categories, index}) => {
+	= ({parentCategory, index}) => {
 
-		const dropdownItems = sub_categories!.map((item, idx) => {
+		const dropdownItems = parentCategory.category!.map((item, idx) => {
 			return <DropdownItem
 				key={idx}
-				subCategory={item}
-				isLast={(sub_categories!.length - 1) === idx ? true : false} />
+				subCategory={item.name}
+				isLast={parentCategory.category!.length - 1 === idx ? true : false}
+			/>
 		})
 
 		const dispatch = useDispatch()
@@ -52,10 +53,11 @@ const NavBarItem: React.FC<NavBarItemProps>
 						(e) => {
 							e.preventDefault()
 							dispatch(openMenu(index))
+							e.stopPropagation()
 						}
 					}
 				>
-					{category_name}
+					{parentCategory.name}
 				</Button>
 				{dropdownItems}
 			</Container>

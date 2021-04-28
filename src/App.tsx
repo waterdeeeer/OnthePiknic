@@ -5,6 +5,8 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './pages/Home';
 
 const App: React.FC = () => {
+
+
 	return (
 		<Router>
 			<Switch>

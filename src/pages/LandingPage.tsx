@@ -7,11 +7,11 @@ import Filter from '../components/style/Filter';
 import COLORS from '../components/utils/colors';
 const LandingPage: React.FC = () => {
 	return (
-			<Container backgroundColor={COLORS.BLUE} position="relative">
+		<Container backgroundColor={COLORS.BLUE} position="relative">
 			<Filter></Filter>
 			<Main></Main>
 			<Overview></Overview>
-			</Container>
-		   );
+		</Container>
+	);
 };
 export default LandingPage;

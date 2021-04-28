@@ -12,7 +12,7 @@ interface ContainerProps {
 	transition?: string;
 	opacity?: number;
 	backgroundColor?: string;
-	borderRadius?: number;
+	borderRadius?: CSSObject['borderRadius'];
 	before?: CSSObject;
 	boxShadow?: string;
 	hover?: CSSObject;
