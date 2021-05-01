@@ -1,14 +1,15 @@
-import {AxiosPromise} from 'axios'
-import onthepiknic from './onthepiknic'
-
+import { AxiosPromise } from "axios";
+import onthepiknic from "./onthepiknic";
+import { Product as product } from "../types";
 export interface ProductApi {
-	getTopFive: () => AxiosPromise;
+  getTopFive: () => AxiosPromise;
+  getAll: () => AxiosPromise<product[]>;
 }
 
-const getTopFive = () => onthepiknic.get('/product/top_5')
-
+const getTopFive = () => onthepiknic.get("/product/top_5");
+const getAll = () => onthepiknic.post("/product/find", {});
 const Product: ProductApi = {
-	getTopFive: getTopFive
-}
-
-export default Product
+  getTopFive: getTopFive,
+  getAll: getAll,
+};
+export default Product;

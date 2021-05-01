@@ -1,8 +1,8 @@
-import { LISTVIEW_ACTION, LISTVIEW_ACTION_TYPE } from '../../types';
+import { LISTVIEW_ACTION, LISTVIEW_ACTION_TYPE } from "../../types";
 
 export interface ListviewState {
-  currentIndex: number;
-  itemList: JSX.Element[];
+  currentIndex?: number;
+  itemList?: JSX.Element[];
 }
 
 const initialState: ListviewState = {

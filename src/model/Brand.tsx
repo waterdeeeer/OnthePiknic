@@ -5,13 +5,13 @@ export interface BrandModel {
   description: string;
 }
 
-class Brand {
+class Brand implements BrandModel {
   name: string;
   logo_src: string;
   description: string;
-  id: number;
+  _id: number;
   constructor(jsonData: BrandModel) {
-    this.id = jsonData._id;
+    this._id = jsonData._id;
     this.name = jsonData.name;
     this.logo_src = jsonData.logo_src;
     this.description = jsonData.description;

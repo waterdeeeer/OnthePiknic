@@ -7,15 +7,15 @@ export interface ProductImageModel {
   size: string;
 }
 
-class ProductImage {
-  id: number;
+class ProductImage implements ProductImageModel {
+  _id: number;
   prod_id: number;
   src: string;
   color: string;
   is_rep: Boolean;
   size: string;
   constructor(jsonData: ProductImageModel) {
-    this.id = jsonData._id;
+    this._id = jsonData._id;
     this.prod_id = jsonData.prod_id;
     this.src = jsonData.src;
     this.color = jsonData.color;
