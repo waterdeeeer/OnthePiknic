@@ -7,8 +7,13 @@ import { IMAGE_BASE_URL } from "../../api";
 
 interface ProductListItemProps {
   product: ProductModel;
+  index: number;
 }
-const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
+const ProductListItem: React.FC<ProductListItemProps> = ({
+  product,
+  index,
+}) => {
+  const colorList = ["red", "blue", "purple", "pink", "yellow"];
   console.log(product);
   return (
     <Container
@@ -17,6 +22,10 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       display="flex"
       alignItems="center"
       justifyContent="center"
+      position="relative"
+      backgroundColor={colorList[index]}
+      margin="30px 0 0"
+      boxShadow="10px 10px 10px black"
     >
       <Image
         width="85%"
@@ -25,6 +34,8 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
         backgroundSize="contain"
         backgroundRepeat="no-repeat"
         backgroundPosition="center"
+        position="relative"
+        zIndex={1}
       ></Image>
     </Container>
   );

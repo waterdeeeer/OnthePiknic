@@ -18,10 +18,13 @@ const ProductListColumn: React.FC<ProductListColumnProps> = ({
 		(_, index) => columnNumber === index % totalColumnCount
 	);
 	const renderedItems = filteredItems.map((item, i) => {
-		return <ProductListItem product={item} key={i}></ProductListItem>;
+		return <ProductListItem product={item} index={i} key={i}></ProductListItem>;
 	});
 	return (
-		<Container width={`calc(${100 / totalColumnCount}% - 10px)`} margin="30px">
+		<Container
+			width={`calc(${100 / totalColumnCount}% - 10px)`}
+			margin={`${columnNumber % 2 === 1 ? "150px" : "0"} 30px 0 0`}
+		>
 			{renderedItems}
 		</Container>
 	);
