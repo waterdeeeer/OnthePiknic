@@ -12,7 +12,7 @@ const ProductList: React.FC<ProductListProps> = () => {
   let totalColumnNumber = 4;
   let i = 0;
   const renderedColumns: JSX.Element[] = [];
-  for (; i < columnNumber; i++) {
+  for (; i < totalColumnNumber; i++) {
     renderedColumns.push(
       <ProductListColumn
         products={allProduct}
