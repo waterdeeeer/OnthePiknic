@@ -23,7 +23,7 @@ const ProductListColumn: React.FC<ProductListColumnProps> = ({
 	return (
 		<Container
 			width={`calc(${100 / totalColumnCount}% - 10px)`}
-			margin={`${columnNumber % 2 === 1 ? "150px" : "0"} 30px 0 0`}
+			margin={`${columnNumber % 2 === 1 ? "200px" : "0"} 30px 0 0`}
 		>
 			{renderedItems}
 		</Container>

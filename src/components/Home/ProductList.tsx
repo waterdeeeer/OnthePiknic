@@ -12,28 +12,30 @@ interface ProductListProps {
 const ProductList: React.FC<ProductListProps> = () => {
 	const allProduct = useSelector((state: RootState) => state.db).all!;
 	const windowSize = useWindowSize();
-	const [totalColumnCount, setTotalColumnCount] = useState(4)
 	const [renderedColumns, setRenderedColumns] = useState<JSX.Element[]>([])
 	useEffect(() => {
+		let totalColumnCount = 0;
 		if (windowSize.width >= DISPLAY_SIZE.DESKTOP) {
-			setTotalColumnCount(4)
+			totalColumnCount = 4;
 		} else if (windowSize.width >= DISPLAY_SIZE.TABLET) {
-			setTotalColumnCount(3)
+			totalColumnCount = 3;
 		} else {
-			setTotalColumnCount(2)
+			totalColumnCount = 2;
 		}
-	}, [windowSize.width])
-	let i = 0;
-	for (; i < totalColumnCount; i++) {
-		renderedColumns.push(
-			<ProductListColumn
-				products={allProduct}
-				totalColumnCount={totalColumnCount}
-				columnNumber={i}
-				key={i}
-			></ProductListColumn>
-		);
-	}
+		const columns = [];
+		let i = 0;
+		for (; i < totalColumnCount; i++) {
+			columns.push(
+				<ProductListColumn
+					products={allProduct}
+					totalColumnCount={totalColumnCount}
+					columnNumber={i}
+					key={i}
+				></ProductListColumn>
+			);
+		}
+		setRenderedColumns(columns)
+	}, [windowSize.width, allProduct])
 	return (
 		<Container display="flex" width="90vw" height="90vh" margin="30px 0 0 0">
 			{renderedColumns}
