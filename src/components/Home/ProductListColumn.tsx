@@ -18,7 +18,7 @@ const ProductListColumn: React.FC<ProductListColumnProps> = ({
 		(_, index) => columnNumber === index % totalColumnCount
 	);
 	const renderedItems = filteredItems.map((item, i) => {
-		return <ProductListItem product={item} index={i} key={i}></ProductListItem>;
+		return <ProductListItem product={item} key={i}></ProductListItem>;
 	});
 	return (
 		<Container
